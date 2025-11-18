@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { getAllTasks } from "../services/TaskServices.js";
-
+import { addTask, getAllTasks } from "../services/TaskServices.js";
+import type { Task } from "../types/Task.js";
 
 export const getTask = async (req: Request, res: Response) => {
   try {
@@ -10,3 +10,9 @@ export const getTask = async (req: Request, res: Response) => {
     res.status(500).json({error : "Failed to fetch tasks" });
   }
 };
+
+export const createTask = async (req: Request, res: Response) => {
+    const task:Task = req.body;
+    await addTask(task);
+    res.send("Task added successfully");
+}
