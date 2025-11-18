@@ -3,3 +3,6 @@ node_modules
 
 # Production files
 dist
+
+# firebase-db
+todo-db.json
