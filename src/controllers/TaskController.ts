@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { addTask, getAllTasks } from "../services/TaskServices.js";
+import { addTask, deleteTaskInDb, getAllTasks } from "../services/TaskServices.js";
 import type { Task } from "../types/Task.js";
 
 export const getTask = async (req: Request, res: Response) => {
@@ -13,6 +13,21 @@ export const getTask = async (req: Request, res: Response) => {
 
 export const createTask = async (req: Request, res: Response) => {
     const task:Task = req.body;
-    await addTask(task);
-    res.send("Task added successfully");
+    const newTask = await addTask(task);
+    res.status(200).json(newTask);
+}
+
+export const deleteTask = async(req: Request , res :Response)=>{
+    const {id} = req.params;
+    if(!id){
+        return res.send("id is require to delete task");
+    }
+    try{
+        const result = await deleteTaskInDb(id);
+        res.json(result);
+        return result;
+    }
+    catch(error){
+        res.send( "failed to delete task" )
+    }
 }
