@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { addTask, deleteTaskInDb, getAllTasks } from "../services/TaskServices.js";
+import { addTask, deleteTaskInDb, editTaskInDb, getAllTasks } from "../services/TaskServices.js";
 import type { Task } from "../types/Task.js";
 
 export const getTask = async (req: Request, res: Response) => {
@@ -30,4 +30,18 @@ export const deleteTask = async(req: Request , res :Response)=>{
     catch(error){
         res.send( "failed to delete task" )
     }
+}
+
+export const putExpense =async (req : Request , res : Response)=>{
+  const id = req.params.id;
+  const updatedTask = req.body;
+
+  if(!id || !updatedTask.taskName || !updatedTask.description || !updatedTask.status || !updatedTask.priority || !updatedTask.deadline){
+    return res.send("All fileds required");
+  }
+  const update = await editTaskInDb(id, updatedTask);
+  if(!update){
+    return res.send("Task not found");
+  }
+  res.json(update);
 }
