@@ -18,3 +18,15 @@ export const deleteTaskInDb = async(taskId : string)=>{
     console.log(id)
     return await taskCollection.doc(id).delete()
 }
+
+export const editTaskInDb = async(id:string, data : Task)=>{
+    const taskReference = taskCollection.doc(id);
+    const task = await taskReference.get()
+
+    if(!task.exists){
+        return null
+    }
+    await taskReference.update(data)
+    const updatedTask = await taskReference.get();
+    return {id , ...updatedTask.data()}
+}
