@@ -11,7 +11,10 @@ This is a Node.js and TypeScript backend for ToDo-Application and integrated wit
 - [Author](#author)
 
 ### Features
-
+- Get all tasks
+- Add task
+- Delete task
+- Update Task
 ### Technologies Used
 - Typescript
 - Node.Js
