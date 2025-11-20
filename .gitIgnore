@@ -6,3 +6,5 @@ dist
 
 # firebase-db
 todo-db.json
+
+.DS_Store
