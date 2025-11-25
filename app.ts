@@ -1,11 +1,13 @@
 import express  from 'express';
 import taskRouter from './src/routes/TaskRoutes.js';
-import cors from "cors";
+import cors, { type CorsOptions } from "cors";
 
 const app = express()
 app.use(express.json())
 const port = 3005
-app.use(cors());
+const corsOptions: CorsOptions = {origin:true}
+app.use(cors(corsOptions));
+
 app.use("/" , taskRouter)
 
 app.listen(port, () => {
