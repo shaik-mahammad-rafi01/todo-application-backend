@@ -8,3 +8,5 @@ dist
 todo-db.json
 
 .DS_Store
+
+.env
