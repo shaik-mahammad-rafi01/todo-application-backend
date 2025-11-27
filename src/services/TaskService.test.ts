@@ -33,7 +33,7 @@ describe("TaskService testcases", () => {
             description: "movie",
             status: "pending",
             priority: "low",
-            deadline: "2025-11-22"
+            deadline: new Date()
         }
         MockCollection.add.mockResolvedValue({ id: "1234" })
         const result = await addTask(mockData)

@@ -3,5 +3,5 @@ export type Task = {
     description: string,
     status: string,
     priority: string,
-    deadline: string
+    deadline: Date
 } 
