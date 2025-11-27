@@ -1,10 +1,12 @@
 import express  from 'express';
 import taskRouter from './src/routes/TaskRoutes.js';
 import cors, { type CorsOptions } from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express()
 app.use(express.json())
-const port = 3005
+const port = process.env.PORT || 3005;
 const corsOptions: CorsOptions = {origin:true}
 app.use(cors(corsOptions));
 
