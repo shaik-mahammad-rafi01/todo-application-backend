@@ -1,11 +1,16 @@
 import express  from 'express';
+import taskRouter from './src/routes/TaskRoutes.js';
+import cors, { type CorsOptions } from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express()
-const port = 3005
+app.use(express.json())
+const port = process.env.PORT;
+const corsOptions: CorsOptions = {origin:true}
+app.use(cors(corsOptions));
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
+app.use("/" , taskRouter)
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
