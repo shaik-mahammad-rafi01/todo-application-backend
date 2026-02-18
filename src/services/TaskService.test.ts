@@ -37,7 +37,7 @@ describe("TaskService testcases", () => {
         }
         MockCollection.add.mockResolvedValue({ id: "1234" })
         const result = await addTask(mockData)
-        expect(result).toBe({id : "1234" , ...mockData})
+        expect(result).toEqual({ id: "1234", ...mockData });
 
     })
 })
